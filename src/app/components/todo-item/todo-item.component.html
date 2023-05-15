@@ -1,0 +1,18 @@
+<div class="my-2">
+  <h4 [ngClass]="{ strike: !todo.active }">{{ todo.title }}</h4>
+  <p [ngClass]="{ strike: !todo.active }">{{ todo.desc }}</p>
+  <div class="form-check my-3" (click)="handleDone(todo)">
+    <input
+      class="form-check-input"
+      type="checkbox"
+      value=""
+      id="flexCheckDefault"
+      [checked]="!todo.active"
+    />
+    <label class="form-check-label" for="flexCheckDefault"> Toggle done </label>
+  </div>
+
+  <button class="btn btn-danger btn-sm" (click)="handleDelete(todo)">
+    Delete
+  </button>
+</div>

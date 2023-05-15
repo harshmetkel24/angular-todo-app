@@ -1,0 +1,39 @@
+<h3>Add new TODO</h3>
+<form (ngSubmit)="onSubmit()" class="mb-5">
+  <div class="mb-3">
+    <label for="sno" class="form-label">Sr. No.</label>
+    <input
+      [(ngModel)]="sno"
+      type="number"
+      class="form-control"
+      id="sno"
+      name="sno"
+      placeholder="Enter serial number here"
+    />
+  </div>
+
+  <div class="mb-3">
+    <label for="title" class="form-label">Title</label>
+    <input
+      [(ngModel)]="title"
+      type="text"
+      class="form-control"
+      id="title"
+      name="title"
+      placeholder="Enter title here"
+    />
+  </div>
+  <div class="form-floating">
+    <textarea
+      [(ngModel)]="desc"
+      class="form-control mb-3"
+      placeholder="Enter description here"
+      id="floatingTextarea2"
+      style="height: 100px"
+      name="desc"
+    ></textarea>
+    <label for="floatingTextarea2">Description</label>
+  </div>
+
+  <button type="submit" class="btn btn-sm btn-primary">Submit</button>
+</form>
