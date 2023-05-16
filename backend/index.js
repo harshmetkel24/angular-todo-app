@@ -9,8 +9,12 @@ require("dotenv").config();
 const app = express();
 const port = process.env.PORT || 5000;
 
+const corsOptions = {
+  origin: "*",
+  optionsSuccessStatus: 200,
+};
 // middleware
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // require and use routes

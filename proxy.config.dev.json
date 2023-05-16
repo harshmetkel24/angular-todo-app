@@ -1,6 +1,6 @@
 {
   "/todos": {
-    "target": "http://localhost:5000/todos",
+    "target": "http://localhost:5000/",
     "secure": false
   }
 }

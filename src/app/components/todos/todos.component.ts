@@ -10,7 +10,8 @@ export class TodosComponent {
   todos :Todo[];
   constructor() {
     this.todos = [];
-    fetch('http://localhost:5000/todos').then(res => res.json()).then(data => {
+    fetch('/todos/').then(res => res.json()).then(data => {
+      console.log(data);
       this.todos = data;
   });
   }
@@ -18,7 +19,7 @@ export class TodosComponent {
   addTodo = (todo : Todo) => {
     console.log(todo);
     this.todos.push(todo);
-    fetch('http://localhost:5000/todos/add', {
+    fetch('/todos/add', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -28,21 +29,21 @@ export class TodosComponent {
     .then(data => {
       console.log('Success:', data);
     })
-    localStorage.setItem("todos",JSON.stringify(this.todos));
   }
 
   deleteTodo = (_id : string) => {
     console.log(_id);
-    fetch('/'+_id, {
+    fetch('/todos/delete/'+_id, {
       method: 'DELETE',
     }).then(response => response.json())
     .then(data => {
+      // update todos array
       console.log('Success:', data);
-      fetch('/').then(res => res.json()).then(data => {
-        this.todos = data;
-    });
     }
-    );
+    ).catch((error) => {
+      console.error('Error:', error);
+    });
+
   }
 
   updateTodo = (_id : string) => {
