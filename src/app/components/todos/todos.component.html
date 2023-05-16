@@ -5,11 +5,11 @@
   No todos to display
 </div>
 <ng-template #elseBlock
-  ><div *ngFor="let todo of todos">
+  ><div *ngFor="let todo of todos; index as i">
     <app-todo-item
       [todo]="todo"
-      (onDelete)="deleteTodo($event)"
-      (toggleDone)="updateTodo($event)"
+      (onDelete)="deleteTodo(todo._id)"
+      (toggleDone)="updateTodo(todo._id)"
     >
     </app-todo-item></div
 ></ng-template>

@@ -23,6 +23,7 @@ export class AddTodoComponent {
   onSubmit = () => {
     console.log("form submitted");
     const todo = {
+      _id : '',
       sno : this.sno,
       title : this.title,
       desc : this.desc,

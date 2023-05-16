@@ -9,26 +9,53 @@ import { Todo } from '../../Todo';
 export class TodosComponent {
   todos :Todo[];
   constructor() {
-    this.todos = localStorage.getItem("todos") ? JSON.parse(localStorage.getItem("todos")!) : [];
+    this.todos = [];
+    fetch('http://localhost:5000/todos').then(res => res.json()).then(data => {
+      this.todos = data;
+  });
   }
 
   addTodo = (todo : Todo) => {
     console.log(todo);
     this.todos.push(todo);
+    fetch('http://localhost:5000/todos/add', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(todo),
+    }).then(response => response.json())
+    .then(data => {
+      console.log('Success:', data);
+    })
     localStorage.setItem("todos",JSON.stringify(this.todos));
   }
 
-  deleteTodo = (todo : Todo) => {
-    console.log(todo);
-    const index = this.todos.indexOf(todo);
-    this.todos.splice(index,1);
-    localStorage.setItem("todos",JSON.stringify(this.todos));
+  deleteTodo = (_id : string) => {
+    console.log(_id);
+    fetch('/'+_id, {
+      method: 'DELETE',
+    }).then(response => response.json())
+    .then(data => {
+      console.log('Success:', data);
+      fetch('/').then(res => res.json()).then(data => {
+        this.todos = data;
+    });
+    }
+    );
   }
 
-  updateTodo = (todo : Todo) => {
-    console.log(todo);
-    const index = this.todos.indexOf(todo);
-    this.todos[index] = todo;
-    localStorage.setItem("todos",JSON.stringify(this.todos));
+  updateTodo = (_id : string) => {
+    console.log(_id);
+    fetch('/toggle/'+_id, {
+      method: 'POST',
+    }).then(response => response.json())
+    .then(data => {
+      console.log('Success:', data);
+      fetch('/').then(res => res.json()).then(data => {
+        this.todos = data;
+    });
+    }
+    );
   }
 }

@@ -8,11 +8,12 @@ import { Todo } from '../../Todo';
 })
 export class TodoItemComponent {
   @Input() todo : Todo;
-  @Output() onDelete : EventEmitter<Todo> = new EventEmitter();
-  @Output() toggleDone : EventEmitter<Todo> = new EventEmitter();
+  @Output() onDelete : EventEmitter<string> = new EventEmitter();
+  @Output() toggleDone : EventEmitter<string> = new EventEmitter();
 
   constructor() { 
     this.todo = {
+      _id: '',
       sno: 0,
       title: '',
       desc: '',
@@ -20,13 +21,13 @@ export class TodoItemComponent {
     }
   }
   handleDelete = (todo : Todo) => {
-    this.onDelete.emit(todo);
+    this.onDelete.emit(todo._id);
     console.log("Delete");
   }
 
   handleDone = (todo : Todo) => {
     todo.active = !todo.active;
-    this.toggleDone.emit(todo);
+    this.toggleDone.emit(todo._id);
     console.log("Done");
   }
 }
