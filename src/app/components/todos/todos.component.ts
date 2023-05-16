@@ -10,7 +10,7 @@ export class TodosComponent {
   todos :Todo[];
   constructor() {
     this.todos = [];
-    fetch('/todos/').then(res => res.json()).then(data => {
+    fetch('/todos').then(res => res.json()).then(data => {
       console.log(data);
       this.todos = data;
   });

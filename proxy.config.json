@@ -1,6 +1,6 @@
 {
   "/todos": {
-    "target": "https://todo-app-backend-2jah.onrender.com/",
+    "target": "http://localhost:5000/",
     "secure": false
   }
 }
