@@ -10,7 +10,7 @@ export class TodosComponent {
   todos :Todo[];
   constructor() {
     this.todos = [];
-    fetch('/todos').then(res => res.json()).then(data => {
+    fetch('https://todo-app-backend-2jah.onrender.com/todos').then(res => res.json()).then(data => {
       console.log(data);
       this.todos = data;
   });
@@ -19,7 +19,7 @@ export class TodosComponent {
   addTodo = (todo : Todo) => {
     console.log(todo);
     this.todos.push(todo);
-    fetch('/todos/add', {
+    fetch('https://todo-app-backend-2jah.onrender.com/todos/add', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -33,7 +33,7 @@ export class TodosComponent {
 
   deleteTodo = (_id : string) => {
     console.log(_id);
-    fetch('/todos/delete/'+_id, {
+    fetch('https://todo-app-backend-2jah.onrender.com/todos/delete/'+_id, {
       method: 'DELETE',
     }).then(response => response.json())
     .then(data => {
@@ -48,7 +48,7 @@ export class TodosComponent {
 
   updateTodo = (_id : string) => {
     console.log(_id);
-    fetch('/toggle/'+_id, {
+    fetch('https://todo-app-backend-2jah.onrender.com/toggle/'+_id, {
       method: 'POST',
     }).then(response => response.json())
     .then(data => {
